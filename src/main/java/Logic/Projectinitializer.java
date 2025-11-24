@@ -15,6 +15,7 @@ import mqtt.MQTTSuscriber;
  */
 @WebListener
 public class Projectinitializer implements ServletContextListener {
+    private MQTTSuscriber suscriber;
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
@@ -32,8 +33,8 @@ public class Projectinitializer implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         Log.log.info("-->Suscribe Topics<--");
         MQTTBroker broker = new MQTTBroker();
-        MQTTSuscriber suscriber = new MQTTSuscriber();
-        suscriber.suscribeTopic(broker, "test");
+        suscriber = new MQTTSuscriber(broker);
+        suscriber.subscribeTopic("sensors/#");
         MQTTPublisher.publish(broker, "test", "Hello from Tomcat :)");
     }
 }
