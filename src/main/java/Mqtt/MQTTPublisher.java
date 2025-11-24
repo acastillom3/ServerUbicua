@@ -18,7 +18,7 @@ public class MQTTPublisher {
     public static void publish(MQTTBroker broker, String topic, String content) {
         MemoryPersistence persistence = new MemoryPersistence();
         try {
-            MqttClient sampleClient = new MqttClient(MQTTBroker.getBroker(), MQTTBroker.getClientId(), persistence);
+            MqttClient sampleClient = new MqttClient(MQTTBroker.getBroker(), MQTTBroker.getPublisherClientId(), persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setUserName(MQTTBroker.getUsername());
             connOpts.setPassword(MQTTBroker.getPassword().toCharArray());
